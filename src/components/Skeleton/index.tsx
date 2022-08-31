@@ -37,9 +37,9 @@ function Media(props: MediaProps) {
   const { loading = false } = props;
 
   return (
-    <Grid container className='grid grid-rows-6'>
-      {(loading ? Array.from(new Array(20)) : data).map((item, index) => (
-        <Box key={index} sx={{ width: 200, marginRight: 2, my: 5 }}>
+    <Grid container className='grid grid-rows-6' style={{height:'calc(100vh - 65px)' , overflow:'scroll'}}>
+      {(loading ? Array.from(new Array(40)) : data).map((item, index) => (
+        <Box key={index} sx={{ width: 300, marginRight: 2, my: 5 }}>
           {item ? (
             <img
               style={{ width: '100%', height: 118 }}

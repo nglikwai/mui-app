@@ -8,6 +8,13 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import Avatar from '@mui/material/Avatar';
+import { Menu } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Link from 'next/link';
+
+const settings = ['Profile', 'Account', 'Dashboard', 'login'];
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,15 +59,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className='width'>
-        <div style={{ width: 480 }}>
+    <Box sx={{ flexGrow: 1 }} >
+      <AppBar position="static" className='width' sx={{background:'#f5f5f5', boxShadow:'none', display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <div style={{ width:'100%' }} >
           <Toolbar>
             <IconButton
               size="large"
               edge="start"
-              color="inherit"
+              color="info"
               aria-label="open drawer"
               sx={{ mr: 2 }}
             >
@@ -70,7 +94,7 @@ export default function SearchAppBar() {
               variant="h6"
               noWrap
               component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, color:'black', fontWeight:'bold' }}
             >
               MUI
             </Typography>
@@ -84,7 +108,35 @@ export default function SearchAppBar() {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
-
+            <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Link href={setting}><Typography textAlign="center">{setting}</Typography></Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
           </Toolbar>
         </div>
       </AppBar>

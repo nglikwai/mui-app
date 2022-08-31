@@ -11,7 +11,7 @@ import DraftsIcon from '@mui/icons-material/Drafts';
 
 export default function BasicList() {
     return (
-        <Box sx={{ width: '100%', maxWidth: 230 }}>
+        <Box sx={{ width: '100%', maxWidth: 230 , paddingTop:2 , height:'calc(100vh - 65px)' , overflow:'scroll'}}>
             <nav aria-label="main mailbox folders">
                 <List>
                     {(Array.from(new Array(23)).map((item, index) => (

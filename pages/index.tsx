@@ -17,13 +17,13 @@ const Home: NextPage = () => {
       <div className='w-full'>
         <ResponsiveAppBar />
       </div>
-      <div style={{ maxWidth: 1488 }} className="flex justify-between ">
+      <div  className="flex justify-between">
 
         <List />
 
-        <div className='flex flex-col items-center bg-gray-50 pl-12 justify-between'>
+        <div className='flex flex-col items-center bg-gray-50 pl-12 justify-between' >
           <Skeleton />
-          <Paginate />
+
         </div>
       </div>
     </div >
