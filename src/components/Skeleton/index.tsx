@@ -37,17 +37,17 @@ function Media(props: MediaProps) {
   const { loading = false } = props;
 
   return (
-    <Grid container wrap="nowrap">
-      {(loading ? Array.from(new Array(6)) : data).map((item, index) => (
+    <Grid container className='grid grid-rows-6'>
+      {(loading ? Array.from(new Array(20)) : data).map((item, index) => (
         <Box key={index} sx={{ width: 200, marginRight: 2, my: 5 }}>
           {item ? (
             <img
-              style={{ width: 210, height: 118 }}
+              style={{ width: '100%', height: 118 }}
               alt={item.title}
               src={item.src}
             />
           ) : (
-            <Link href='video'><Skeleton variant="rectangular" width={210} height={118} /></Link>
+            <Link href='video'><Skeleton variant="rectangular" width='100%' height={118} /></Link>
           )}
           {item ? (
             <Box sx={{ pr: 2 }}>
@@ -75,9 +75,9 @@ function Media(props: MediaProps) {
 
 export default function YouTube() {
   return (
-    <Box sx={{ overflow: 'hidden' }}>
+    <Box sx={{ overflow: 'hidden' }} >
       <Media loading />
-      <Media loading /><Media loading />
+      {/* <Media /> */}
     </Box>
   );
 }
